@@ -25,11 +25,11 @@
 			</el-table-column>
 			<el-table-column prop="sex" label="性别" width="100" :formatter="formatSex" sortable>
 			</el-table-column>
-			<el-table-column prop="age" label="年龄" width="100" sortable>
-			</el-table-column>
-			<el-table-column prop="birth" label="生日" width="120" sortable>
-			</el-table-column>
 			<el-table-column prop="addr" label="地址" min-width="180" sortable>
+			</el-table-column>
+			<el-table-column prop="bookName" label="书名" min-width="180" sortable>
+			</el-table-column>
+			<el-table-column prop="bookNum" label="数量" min-width="180" sortable>
 			</el-table-column>
 			<el-table-column label="操作" width="150">
 				<template slot-scope="scope">
@@ -58,14 +58,15 @@
 						<el-radio class="radio" :label="0">女</el-radio>
 					</el-radio-group>
 				</el-form-item>
-				<el-form-item label="年龄">
-					<el-input-number v-model="editForm.age" :min="0" :max="200"></el-input-number>
-				</el-form-item>
-				<el-form-item label="生日">
-					<el-date-picker type="date" placeholder="选择日期" v-model="editForm.birth"></el-date-picker>
-				</el-form-item>
+
 				<el-form-item label="地址">
 					<el-input type="textarea" v-model="editForm.addr"></el-input>
+				</el-form-item>
+				<el-form-item label="书名">
+					<el-input v-model="editForm.bookName" auto-complete="off"></el-input>
+				</el-form-item>
+				<el-form-item label="数量">
+					<el-input-number v-model="addForm.bookNum" :min="0" ></el-input-number>
 				</el-form-item>
 			</el-form>
 			<div slot="footer" class="dialog-footer">
@@ -86,14 +87,15 @@
 						<el-radio class="radio" :label="0">女</el-radio>
 					</el-radio-group>
 				</el-form-item>
-				<el-form-item label="年龄">
-					<el-input-number v-model="addForm.age" :min="0" :max="200"></el-input-number>
-				</el-form-item>
-				<el-form-item label="生日">
-					<el-date-picker type="date" placeholder="选择日期" v-model="addForm.birth"></el-date-picker>
-				</el-form-item>
+
 				<el-form-item label="地址">
 					<el-input type="textarea" v-model="addForm.addr"></el-input>
+				</el-form-item>
+				<el-form-item label="书名">
+					<el-input v-model="editForm.bookName" auto-complete="off"></el-input>
+				</el-form-item>
+				<el-form-item label="数量">
+					<el-input-number v-model="addForm.bookNum" :min="0" ></el-input-number>
 				</el-form-item>
 			</el-form>
 			<div slot="footer" class="dialog-footer">
@@ -133,8 +135,8 @@
 					id: 0,
 					name: '',
 					sex: -1,
-					age: 0,
-					birth: '',
+					bookNum: 0,
+					bookName: '',
 					addr: ''
 				},
 
@@ -149,8 +151,8 @@
 				addForm: {
 					name: '',
 					sex: -1,
-					age: 0,
-					birth: '',
+					bookNum: 0,
+					bookName: '',
 					addr: ''
 				}
 
@@ -225,7 +227,8 @@
 							this.editLoading = true;
 							//NProgress.start();
 							let para = Object.assign({}, this.editForm);
-							para.birth = (!para.birth || para.birth == '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
+							console.log(this.editForm)
+
 							editUser(para).then((res) => {
 								this.editLoading = false;
 								//NProgress.done();
@@ -249,7 +252,7 @@
 							this.addLoading = true;
 							//NProgress.start();
 							let para = Object.assign({}, this.addForm);
-							para.birth = (!para.birth || para.birth == '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
+
 							addUser(para).then((res) => {
 								this.addLoading = false;
 								//NProgress.done();
