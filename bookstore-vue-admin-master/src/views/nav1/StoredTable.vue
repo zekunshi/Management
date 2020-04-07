@@ -76,7 +76,7 @@
 					<el-input-number v-model="addForm.bookNum" :min="0" ></el-input-number>
 				</el-form-item>
 				<el-form-item label="类别">
-					<el-input type="textarea" v-model="editForm.bookType"></el-input>
+					<el-input type="textarea" v-model="addForm.bookType"></el-input>
 				</el-form-item>
 			</el-form>
 			<div slot="footer" class="dialog-footer">

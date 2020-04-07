@@ -180,7 +180,7 @@
 				this.listLoading = true;
 				//NProgress.start();
 				getUserListPage(para).then((res) => {
-					console.log(res)
+
 					this.total = res.data.total;
 					this.users = res.data.users;
 					this.listLoading = false;
