@@ -20,10 +20,18 @@ let routes = [
     {
         path: '/',
         component: Home,
+        name: '团队成员',
+        iconCls: 'el-icon-message',//图标样式class
+        children:[
+            {path:'Main',component:Main,name:'团队成员'}
+        ]
+    },
+    {
+        path: '/',
+        component: Home,
         name: '书籍管理',
         iconCls: 'el-icon-message',//图标样式class
         children: [
-            {path:'/Main',component:Main,name:'小组成员'},
             { path: '/puchased-table', component: Table, name: 'Table' },
             { path: '/stored-table', component: Table, name: 'Table' },
         ]
