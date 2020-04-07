@@ -53,5 +53,4 @@ let routes = [
         redirect: { path: '/404' }
     }
 ];
-
 export default routes;
