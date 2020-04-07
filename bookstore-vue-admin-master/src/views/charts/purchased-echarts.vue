@@ -21,6 +21,7 @@
 
 <script>
     import echarts from 'echarts'
+
     export default {
         data() {
             return {
@@ -35,16 +36,16 @@
             drawColumnChart() {
                 this.chartColumn = echarts.init(document.getElementById('chartColumn'));
                 this.chartColumn.setOption({
-                  title: { text: 'Column Chart' },
+                  title: { text: 'Column Chart分析' },
                   tooltip: {},
                   xAxis: {
-                      data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+                      data: ["教育", "文艺", "人文社科"]
                   },
                   yAxis: {},
                   series: [{
                       name: '销量',
                       type: 'bar',
-                      data: [5, 20, 36, 10, 10, 20]
+                      data: [10, 10, 20]
                     }]
                 });
             },
@@ -52,7 +53,7 @@
                 this.chartBar = echarts.init(document.getElementById('chartBar'));
                 this.chartBar.setOption({
                     title: {
-                        text: 'Bar Chart',
+                        text: 'Bar Chart 分析',
                         subtext: '数据来自网络'
                     },
                     tooltip: {
@@ -62,7 +63,7 @@
                         }
                     },
                     legend: {
-                        data: ['2011年', '2012年']
+                        data: ['书籍数目（本）']
                     },
                     grid: {
                         left: '3%',
@@ -76,75 +77,70 @@
                     },
                     yAxis: {
                         type: 'category',
-                        data: ['巴西', '印尼', '美国', '印度', '中国', '世界人口(万)']
+                        data: ['教材', '考试', '工具书', '文学', '传记', '艺术', '总书籍数目']
                     },
                     series: [
                         {
-                            name: '2011年',
+                            name: '书籍数目（本）',
                             type: 'bar',
-                            data: [18203, 23489, 29034, 104970, 131744, 630230]
-                        },
-                        {
-                            name: '2012年',
-                            type: 'bar',
-                            data: [19325, 23438, 31000, 121594, 134141, 681807]
+                            data: [18203, 23489, 29034, 104970, 131744, 630230,1000000]
                         }
                     ]
                 });
             },
             drawLineChart() {
                 this.chartLine = echarts.init(document.getElementById('chartLine'));
-                this.chartLine.setOption({
-                    title: {
-                        text: 'Line Chart'
-                    },
-                    tooltip: {
-                        trigger: 'axis'
-                    },
-                    legend: {
-                        data: ['邮件营销', '联盟广告', '搜索引擎']
-                    },
-                    grid: {
-                        left: '3%',
-                        right: '4%',
-                        bottom: '3%',
-                        containLabel: true
-                    },
-                    xAxis: {
-                        type: 'category',
-                        boundaryGap: false,
-                        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-                    },
-                    yAxis: {
-                        type: 'value'
-                    },
-                    series: [
-                        {
-                            name: '邮件营销',
-                            type: 'line',
-                            stack: '总量',
-                            data: [120, 132, 101, 134, 90, 230, 210]
-                        },
-                        {
-                            name: '联盟广告',
-                            type: 'line',
-                            stack: '总量',
-                            data: [220, 182, 191, 234, 290, 330, 310]
-                        },
-                        {
-                            name: '搜索引擎',
-                            type: 'line',
-                            stack: '总量',
-                            data: [820, 932, 901, 934, 1290, 1330, 1320]
-                        }
-                    ]
-                });
+                // this.chartLine.setOption({
+                //     title: {
+                //         text: 'Line Chart'
+                //     },
+                //     tooltip: {
+                //         trigger: 'axis'
+                //     },
+                //     legend: {
+                //         data: ['邮件营销', '联盟广告', '搜索引擎']
+                //     },
+                //     grid: {
+                //         left: '3%',
+                //         right: '4%',
+                //         bottom: '3%',
+                //         containLabel: true
+                //     },
+                //     xAxis: {
+                //         type: 'category',
+                //         boundaryGap: false,
+                //         data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                //     },
+                //     yAxis: {
+                //         type: 'value'
+                //     },
+                //     series: [
+                //         {
+                //             name: '邮件营销',
+                //             type: 'line',
+                //             stack: '总量',
+                //             data: [120, 132, 101, 134, 90, 230, 210]
+                //         },
+                //         {
+                //             name: '联盟广告',
+                //             type: 'line',
+                //             stack: '总量',
+                //             data: [220, 182, 191, 234, 290, 330, 310]
+                //         },
+                //         {
+                //             name: '搜索引擎',
+                //             type: 'line',
+                //             stack: '总量',
+                //             data: [820, 932, 901, 934, 1290, 1330, 1320]
+                //         }
+                //     ]
+                // });
             },
             drawPieChart() {
                 this.chartPie = echarts.init(document.getElementById('chartPie'));
                 this.chartPie.setOption({
                     title: {
-                        text: 'Pie Chart',
+                        text: 'Pie Chart 分析',
                         subtext: '纯属虚构',
                         x: 'center'
                     },
@@ -155,7 +151,7 @@
                     legend: {
                         orient: 'vertical',
                         left: 'left',
-                        data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+                        data: ['教材', '考试', '工具书', '文学', '传记', '艺术']
                     },
                     series: [
                         {
@@ -164,11 +160,12 @@
                             radius: '55%',
                             center: ['50%', '60%'],
                             data: [
-                                { value: 335, name: '直接访问' },
-                                { value: 310, name: '邮件营销' },
-                                { value: 234, name: '联盟广告' },
-                                { value: 135, name: '视频广告' },
-                                { value: 1548, name: '搜索引擎' }
+                                { value: 335, name: '教材' },
+                                { value: 310, name: '考试' },
+                                { value: 234, name: '工具书' },
+                                { value: 135, name: '文学' },
+                                { value: 500, name: '传记' },
+                                { value: 400,name:'艺术'}
                             ],
                             itemStyle: {
                                 emphasis: {
