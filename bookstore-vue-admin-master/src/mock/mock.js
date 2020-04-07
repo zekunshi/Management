@@ -1,6 +1,7 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { LoginUsers, Users } from './data/user';
+import Mock from "mockjs";
 let _Users = Users;
 
 export default {
@@ -109,13 +110,13 @@ export default {
 
     //编辑用户
     mock.onGet('/user/edit').reply(config => {
-      let { id, name, addr, age, birth, sex } = config.params;
+      let { id, name, addr, sex, bookName, bookNum } = config.params;
       _Users.some(u => {
         if (u.id === id) {
           u.name = name;
           u.addr = addr;
-          u.age = age;
-          u.birth = birth;
+          u.bookNum = bookNum;
+          u.bookName = bookName;
           u.sex = sex;
           return true;
         }
@@ -132,12 +133,13 @@ export default {
 
     //新增用户
     mock.onGet('/user/add').reply(config => {
-      let { name, addr, age, birth, sex } = config.params;
+      let { name, addr, sex,  bookName, bookNum } = config.params;
       _Users.push({
+        id: Mock.Random.guid(),
         name: name,
         addr: addr,
-        age: age,
-        birth: birth,
+        bookNum: bookNum,
+        bookName: bookName,
         sex: sex
       });
       return new Promise((resolve, reject) => {

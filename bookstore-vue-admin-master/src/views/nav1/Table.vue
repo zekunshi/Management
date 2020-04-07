@@ -66,7 +66,7 @@
 					<el-input v-model="editForm.bookName" auto-complete="off"></el-input>
 				</el-form-item>
 				<el-form-item label="数量">
-					<el-input-number v-model="addForm.bookNum" :min="0" ></el-input-number>
+					<el-input-number v-model="editForm.bookNum" :min="0" ></el-input-number>
 				</el-form-item>
 			</el-form>
 			<div slot="footer" class="dialog-footer">
@@ -92,7 +92,7 @@
 					<el-input type="textarea" v-model="addForm.addr"></el-input>
 				</el-form-item>
 				<el-form-item label="书名">
-					<el-input v-model="editForm.bookName" auto-complete="off"></el-input>
+					<el-input v-model="addForm.bookName" auto-complete="off"></el-input>
 				</el-form-item>
 				<el-form-item label="数量">
 					<el-input-number v-model="addForm.bookNum" :min="0" ></el-input-number>
@@ -135,9 +135,10 @@
 					id: 0,
 					name: '',
 					sex: -1,
+					addr: '',
 					bookNum: 0,
-					bookName: '',
-					addr: ''
+					bookName: ''
+
 				},
 
 				addFormVisible: false,//新增界面是否显示
@@ -149,11 +150,13 @@
 				},
 				//新增界面数据
 				addForm: {
+					id: 0,
 					name: '',
 					sex: -1,
+					addr: '',
 					bookNum: 0,
-					bookName: '',
-					addr: ''
+					bookName: ''
+
 				}
 
 			}
@@ -214,8 +217,8 @@
 				this.addForm = {
 					name: '',
 					sex: -1,
-					age: 0,
-					birth: '',
+					bookNum: 0,
+					bookName: '',
 					addr: ''
 				};
 			},

@@ -43,7 +43,7 @@ let routes = [
         name: '数据分析',
         iconCls: 'fa fa-bar-chart',
         children: [
-            { path: '/data-analysis', component: echarts, name: '库存书籍分析' },
+            { path: '/stored-data-analysis', component: echarts, name: '库存书籍分析' },
             { path: '/purchased-data-analysis',component: purchasedecharts, name: '已购书籍分析'}
         ]
     },
