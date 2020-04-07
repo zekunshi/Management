@@ -1,7 +1,8 @@
 import Login from './views/Login.vue'
 import NotFound from './views/404.vue'
 import Home from './views/Home.vue'
-import Table from './views/nav1/Table.vue'
+import PuchasedTable from './views/nav1/PuchasedTable.vue'
+import StoredTable from './views/nav1/StoredTable.vue'
 import echarts from './views/charts/echarts.vue'
 import purchasedecharts from './views/charts/purchased-echarts'
 import Main from './views/nav1/Main'
@@ -33,8 +34,8 @@ let routes = [
         name: '书籍管理',
         iconCls: 'el-icon-message',//图标样式class
         children: [
-            { path: '/puchased-table', component: Table, name: '已购书籍管理' },
-            { path: '/stored-table', component: Table, name: '书籍管理' },
+            { path: '/puchased-table', component: PuchasedTable, name: '已购书籍管理' },
+            { path: '/stored-table', component: StoredTable, name: '书籍管理' },
         ]
     },
     {

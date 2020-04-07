@@ -1,9 +1,10 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { LoginUsers, Users } from './data/user';
+import {Books} from './data/books'
 import Mock from "mockjs";
 let _Users = Users;
-
+let _Books = Books;
 export default {
   /**
    * mock bootstrap
@@ -47,14 +48,32 @@ export default {
     //获取用户列表
     mock.onGet('/user/list').reply(config => {
       let {name} = config.params;
+      console.log(config)
       let mockUsers = _Users.filter(user => {
         if (name && user.name.indexOf(name) == -1) return false;
+        return true;
+      });
+      console.log(mockUsers)
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            users: mockUsers
+          }]);
+        }, 1000);
+      });
+    });
+
+    //获取书籍列表
+    mock.onGet('/books/list').reply(config => {
+      let {bookName} = config.params;
+      let mockBooks = _Books.filter(book => {
+        if (bookName && book.bookName.indexOf(bookName) == -1) return false;
         return true;
       });
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve([200, {
-            users: mockUsers
+            books: mockBooks
           }]);
         }, 1000);
       });
@@ -79,10 +98,42 @@ export default {
       });
     });
 
+    //获取书籍列表（分页）
+    mock.onGet('/books/listpage').reply(config => {
+      let {page, bookName} = config.params;
+      let mockBooks = _Books.filter(book => {
+        if (bookName && book.bookName.indexOf(bookName) == -1) return false;
+        return true;
+      });
+      let total = mockBooks.length;
+      mockBooks = mockBooks.filter((u, index) => index < 20 * page && index >= 20 * (page - 1));
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            total: total,
+            books: mockBooks
+          }]);
+        }, 1000);
+      });
+    });
+
     //删除用户
     mock.onGet('/user/remove').reply(config => {
       let { id } = config.params;
       _Users = _Users.filter(u => u.id !== id);
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            code: 200,
+            msg: '删除成功'
+          }]);
+        }, 500);
+      });
+    });
+    //删除书籍
+    mock.onGet('/books/remove').reply(config => {
+      let { id } = config.params;
+      _Books = _Books.filter(u => u.id !== id);
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve([200, {
@@ -108,6 +159,21 @@ export default {
       });
     });
 
+    // 批量删除书籍
+    mock.onGet('/books/batchremove').reply(config => {
+      let { ids } = config.params;
+      ids = ids.split(',');
+      _Books = _Books.filter(u => !ids.includes(u.id));
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            code: 200,
+            msg: '删除成功'
+          }]);
+        }, 500);
+      });
+    });
+
     //编辑用户
     mock.onGet('/user/edit').reply(config => {
       let { id, name, addr, sex, bookName, bookNum } = config.params;
@@ -121,6 +187,28 @@ export default {
           return true;
         }
       });
+
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            code: 200,
+            msg: '编辑成功'
+          }]);
+        }, 500);
+      });
+      });
+    // 编辑书籍
+    mock.onGet('/books/edit').reply(config => {
+      let { id, bookName, bookNum,bookType } = config.params;
+      _Books.some(u => {
+        if (u.id === id) {
+
+          u.bookNum = bookNum;
+          u.bookName = bookName;
+          u.bookType = bookType;
+          return true;
+        }
+      });
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve([200, {
@@ -130,7 +218,6 @@ export default {
         }, 500);
       });
     });
-
     //新增用户
     mock.onGet('/user/add').reply(config => {
       let { name, addr, sex,  bookName, bookNum } = config.params;
@@ -142,6 +229,8 @@ export default {
         bookName: bookName,
         sex: sex
       });
+
+
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve([200, {
@@ -151,6 +240,24 @@ export default {
         }, 500);
       });
     });
+    // 新增书籍
+    mock.onGet('/books/add').reply(config => {
+        let {  bookName, bookNum,bookType } = config.params;
+        _Books.push({
+          id: Mock.Random.guid(),
 
+          bookNum: bookNum,
+          bookName: bookName,
+          bookType: bookType
+        });
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve([200, {
+              code: 200,
+              msg: '新增成功'
+            }]);
+          }, 500);
+        });
+      });
   }
 };
