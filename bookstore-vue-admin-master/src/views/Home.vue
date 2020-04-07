@@ -69,7 +69,7 @@
 	export default {
 		data() {
 			return {
-				sysName:'VUEADMIN',
+				sysName:'网上书店后台管理',
 				collapsed:false,
 				sysUserName: '',
 				sysUserAvatar: '',
