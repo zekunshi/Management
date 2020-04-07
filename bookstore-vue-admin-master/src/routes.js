@@ -3,7 +3,7 @@ import NotFound from './views/404.vue'
 import Home from './views/Home.vue'
 import Table from './views/nav1/Table.vue'
 import echarts from './views/charts/echarts.vue'
-
+import Main from './views/nav1/Main'
 let routes = [
     {
         path: '/login',
@@ -17,13 +17,13 @@ let routes = [
         name: '',
         hidden: true
     },
-    //{ path: '/main', component: Main },
     {
         path: '/',
         component: Home,
-        name: '导航一',
+        name: '书籍管理',
         iconCls: 'el-icon-message',//图标样式class
         children: [
+            {path:'/Main',component:Main,name:'小组成员'},
             { path: '/puchased-table', component: Table, name: 'Table' },
             { path: '/stored-table', component: Table, name: 'Table' },
         ]
