@@ -54,7 +54,7 @@
                 this.chartBar.setOption({
                     title: {
                         text: 'Bar Chart 分析',
-                        subtext: '数据来自网络'
+                        subtext: ''
                     },
                     tooltip: {
                         trigger: 'axis',
@@ -141,7 +141,7 @@
                 this.chartPie.setOption({
                     title: {
                         text: 'Pie Chart 分析',
-                        subtext: '纯属虚构',
+                        subtext: '',
                         x: 'center'
                     },
                     tooltip: {
