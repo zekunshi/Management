@@ -1,7 +1,7 @@
 <template>
 	<section>
 		网上书店的后台管理系统
-		小组成员：石泽昆，陈添，刘思铭，雷冈
+		小组成员：汪志豪，黄文柯
 	</section>
 </template>
 
